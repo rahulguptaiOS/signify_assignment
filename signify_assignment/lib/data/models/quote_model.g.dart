@@ -12,16 +12,17 @@ QuoteModel _$QuoteModelFromJson(Map<String, dynamic> json) => QuoteModel(
       json['dateAdded'] as String?,
       json['dateModified'] as String?,
       json['length'] as int?,
-      json['_id'] as String,
+      json['id'] as String,
       json['content'] as String?,
       json['author'] as String?,
-    );
+    )..rate = (json['rate'] as num).toDouble();
 
 Map<String, dynamic> _$QuoteModelToJson(QuoteModel instance) =>
     <String, dynamic>{
-      '_id': instance.id,
+      'id': instance.id,
       'content': instance.content,
       'author': instance.author,
+      'rate': instance.rate,
       'tags': instance.tags,
       'authorSlug': instance.authorSlug,
       'dateAdded': instance.dateAdded,

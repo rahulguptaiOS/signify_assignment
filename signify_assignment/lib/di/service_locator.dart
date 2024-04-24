@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:signify_assignment/data/source/network/api_client.dart';
 import 'package:signify_assignment/data/source/quote_repository_impl.dart';
+import 'package:signify_assignment/domain/usecases/get_quotes.dart';
 import 'package:signify_assignment/presentation/cubit/quotes_cubit.dart';
 
 import '../data/source/local/local_storage.dart';
@@ -14,5 +15,6 @@ Future<void> setupLocator() async {
   getIt.registerFactory<LocalStorage>(() => LocalStorageImpl());
   getIt.registerFactory<QuoteRepository>(
           () => QuoteRepositoryImpl(apiClient: getIt(), localStorage: getIt()));
-  getIt.registerFactory(() => QuotesCubit(repository: getIt()));
+  getIt.registerFactory<GetQuotesUseCase>(() => GetQuotesUseCase(repository: getIt()));
+  getIt.registerFactory(() => QuotesCubit(getQuotesUseCase: getIt()));
 }

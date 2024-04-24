@@ -1,8 +1,8 @@
 import 'package:signify_assignment/domain/entity/quote.dart';
 import 'package:signify_assignment/domain/repository/quote_repository.dart';
 
-class GetQuotes {
-  GetQuotes({
+class GetQuotesUseCase {
+  GetQuotesUseCase({
     required QuoteRepository repository,
   }) : _repository = repository;
 

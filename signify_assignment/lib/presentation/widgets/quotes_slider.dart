@@ -21,20 +21,14 @@ class QuoteSlider extends StatelessWidget {
       BlocProvider.of<QuotesCubit>(context).fetchRandomQuotes();
     });
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Quote Slideshow'),
-        ),
       body: BlocBuilder<QuotesCubit, QuotesState>(builder: (BuildContext context, state) {
         if(state is QuotesLoadingState){
-          print("loading");
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is ErrorState) {
-          print("error");
           return  QuoteErrorWidget(message: state.message ?? "", color: state.color);
         } else if (state is QuotesLoadedState) {
-          print("loaded");
             return Center(
               child: Stack(
                 children: [
@@ -47,14 +41,20 @@ class QuoteSlider extends StatelessWidget {
                         IconButton(onPressed: () {
                               BlocProvider.of<QuotesCubit>(context).shareQuote(state.quote);
                             },
-                            icon: const Icon(Icons.share)),
+                            icon: const Icon(
+                              Icons.share,
+                              color: Colors.white
+                            )),
                         IconButton(onPressed: () {
                           showDialog(context: context, builder: (alertContext) {
                             return RateAlert(onRatingUpdate: (rate) => BlocProvider.of<QuotesCubit>(context).rateQuote(state.quote, rate, state.color),
                                 defaultRate: state.quote?.rate ?? 1);
                           });
                         },
-                            icon: const Icon(Icons.star_rate)),
+                            icon: const Icon(
+                                Icons.star_rate,
+                                color: Colors.white
+                            )),
                       ],
                     ),
                   )

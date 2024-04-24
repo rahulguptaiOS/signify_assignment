@@ -19,20 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: BlocProvider(
-        create: (context) => QuotesCubit(repository: getIt()),
-        child: MaterialApp(
-            title: 'BlocProvider Example',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: QuoteSlider()
-        ),
+        create: (context) => getIt<QuotesCubit>(),
+        child: QuoteSlider(),
       )
     );
   }

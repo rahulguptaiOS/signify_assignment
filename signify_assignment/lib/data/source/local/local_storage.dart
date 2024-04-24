@@ -19,7 +19,6 @@ class LocalStorageImpl extends LocalStorage {
     var sharedPref = await SharedPreferences.getInstance();
 
     final keys = sharedPref.getKeys().toList();
-    print(keys);
     if (keys.isNotEmpty) {
       final random = Random();
       final randomKey = keys[random.nextInt(keys.length)];

@@ -7,6 +7,7 @@ import 'package:signify_assignment/domain/repository/quote_repository.dart';
 import 'package:signify_assignment/presentation/cubit/quotes_state.dart';
 
 import '../../domain/entity/quote.dart';
+import '../../domain/usecases/get_quotes.dart';
 
 class QuotesCubit extends Cubit<QuotesState> {
 
@@ -29,17 +30,17 @@ class QuotesCubit extends Cubit<QuotesState> {
     Colors.brown,
     Colors.grey,
   ];
-  QuotesCubit({required this.repository}) : super(InitialState()) {
+  QuotesCubit({required this.getQuotesUseCase}) : super(InitialState()) {
     fetchRandomQuotes();
   }
 
-  final QuoteRepository repository;
+  final GetQuotesUseCase getQuotesUseCase;
   late List<Quote> _value;
 
 
   void fetchRandomQuotes() {
     try {
-      repository.getQuote()
+      getQuotesUseCase.call()
       .then((value) {
         _value = value;
         value.isNotEmpty ? emit(QuotesLoadedState(value.first, _generateRandomItem(beautifulColors))) : emit(ErrorState("No Quote found", _generateRandomItem(beautifulColors)));
@@ -62,7 +63,6 @@ class QuotesCubit extends Cubit<QuotesState> {
   _generateRandomItem(items) {
     final Random random = Random();
     final int index = random.nextInt(items.length);
-    print(index);
     return items[index];
   }
 }

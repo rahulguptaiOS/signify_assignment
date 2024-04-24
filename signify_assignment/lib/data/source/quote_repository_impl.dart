@@ -33,7 +33,6 @@ class QuoteRepositoryImpl extends QuoteRepository {
       _localStorage.saveQuotes(list: quotes);
       return quotes;
     } catch (e) {
-      print(e.toString());
       return _localStorage.loadRandomQuotes();
     }
   }

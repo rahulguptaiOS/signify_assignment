@@ -34,7 +34,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/quotes?limit=1',
+              '/quotes?limit=5',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -8,6 +8,6 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
-  @GET('/quotes?limit=1')
+  @GET('/quotes?limit=5')
   Future<QuoteResponse> getQuotes();
 }

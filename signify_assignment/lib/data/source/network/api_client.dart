@@ -8,6 +8,6 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
-  @GET('/random')
+  @GET('/random?limit=5')
   Future<List<QuoteModel>> getQuotes();
 }

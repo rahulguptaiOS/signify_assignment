@@ -34,7 +34,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              '/random',
+              '/random?limit=5',
               queryParameters: queryParameters,
               data: _data,
             )

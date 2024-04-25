@@ -15,28 +15,26 @@ class InitialState extends QuotesState {
 }
 
 class QuotesLoadedState extends QuotesState {
-  final Quote? quote;
-  final Color color;
+  final List<Quote?> quotes;
 
-  QuotesLoadedState(this.quote, this.color);
+  QuotesLoadedState(this.quotes);
   @override
   List<Object?> get props => [];
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is QuotesLoadedState && runtimeType == other.runtimeType && quote == other.quote;
+          other is QuotesLoadedState && runtimeType == other.runtimeType && quotes == other.quotes;
 
 
   @override
-  int get hashCode => quote.hashCode;
+  int get hashCode => quotes.hashCode;
 }
 
 class ErrorState extends QuotesState {
   final String? message;
-  final Color color;
 
-  ErrorState(this.message, this.color);
+  ErrorState(this.message);
 
   @override
   List<Object> get props => [];

@@ -50,8 +50,6 @@ class QuoteSlider extends StatelessWidget {
         } else if (state is ErrorState) {
           return  QuoteErrorWidget(message: state.message ?? "", color: Colors.red);
         } else if (state is QuotesLoadedState) {
-          print("count:");
-          print(state.quotes.length);
           _items.addAll(state.quotes.nonNulls.toList());
           _colors.addAll(beautifulColors);
             return Center(

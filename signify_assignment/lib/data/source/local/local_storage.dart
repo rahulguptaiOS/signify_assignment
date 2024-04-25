@@ -19,16 +19,20 @@ class LocalStorageImpl extends LocalStorage {
     var sharedPref = await SharedPreferences.getInstance();
 
     final keys = sharedPref.getKeys().toList();
+    List<QuoteModel> list = [];
     if (keys.isNotEmpty) {
       final random = Random();
-      final randomKey = keys[random.nextInt(keys.length)];
-      var quote = sharedPref.getString(randomKey);
-      if(quote != null) {
-        return [QuoteModel.fromJson(json.decode(quote))];
+      while(list.length < 5){
+        final randomKey = keys[random.nextInt(keys.length)];
+        var quote = sharedPref.getString(randomKey);
+        if(quote != null) {
+          list.add(QuoteModel.fromJson(json.decode(quote)));
+        }
       }
+
     }
 
-    return [];
+    return list;
   }
 
   @override

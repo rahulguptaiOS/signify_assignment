@@ -34,17 +34,14 @@ class QuoteRepositoryImpl extends QuoteRepository {
         return _localStorage.loadRandomQuotes();
       }
       final responses = await Future.wait([_apiClient.getQuotes(), _apiService.getQuotes() ]);
-      print("quotes");
       if(responses[0] != null){
         final List<QuoteModel> quotes =  List<QuoteModel>.from(responses[0] as List);
-        print(quotes.length);
         _localStorage.saveQuotes(list: quotes);
         return quotes;
       }
 
       final QuoteResponse quotes =  responses[1] as QuoteResponse;
       final quoteList = quotes.getQuoteList();
-      print(quoteList.length);
       _localStorage.saveQuotes(list: quoteList);
       return quoteList;
     } catch (e) {

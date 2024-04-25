@@ -11,7 +11,6 @@ class FileHandler {
       var jsonData = json.decode(jsonString);
       return jsonData;
     } catch (e) {
-      print('Error reading JSON file: $e');
       return [];
     }
   }

@@ -32,3 +32,6 @@ I implemented Clean architecture in which I divided the whole app into 3 modules
 - **build_runner**: To create generator files.
 - **shared_preferences**: To create Shared preference instance.
 
+## Unit Testing
+I used Mockito to test the API call with mock data
+

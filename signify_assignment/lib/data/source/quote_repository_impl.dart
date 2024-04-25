@@ -28,6 +28,7 @@ class QuoteRepositoryImpl extends QuoteRepository {
 
   @override
   Future<List<Quote>> getQuote() async {
+
     try {
       var isOffline = await _isDeviceOffline();
       if(isOffline){
@@ -45,6 +46,7 @@ class QuoteRepositoryImpl extends QuoteRepository {
       _localStorage.saveQuotes(list: quoteList);
       return quoteList;
     } catch (e) {
+      print(e);
       return _localStorage.loadRandomQuotes();
     }
   }

@@ -25,6 +25,7 @@ class QuotesCubit extends Cubit<QuotesState> {
       getQuotesUseCase.call()
       .then((value) {
         _value = value;
+        print(value);
         value.isNotEmpty ? emit(QuotesLoadedState(value)) : emit(ErrorState("No Quote found"));
       });
     } catch (e) {

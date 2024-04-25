@@ -41,17 +41,17 @@ Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
-      id: json['id'] as String,
+      id: json['_id'] as String,
       quoteText: json['quoteText'] as String,
       quoteAuthor: json['quoteAuthor'] as String,
       quoteGenre: json['quoteGenre'] as String,
-      v: json['v'] as int,
+      v: json['__v'] as int,
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'id': instance.id,
+      '_id': instance.id,
       'quoteText': instance.quoteText,
       'quoteAuthor': instance.quoteAuthor,
       'quoteGenre': instance.quoteGenre,
-      'v': instance.v,
+      '__v': instance.v,
     };

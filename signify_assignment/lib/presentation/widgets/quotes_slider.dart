@@ -23,6 +23,7 @@ class QuoteSlider extends StatelessWidget {
       if (_currentPage < _items.length - 1) {
         _currentPage++;
       } else {
+
         BlocProvider.of<QuotesCubit>(context).fetchRandomQuotes();
       }
       _pageController.animateToPage(

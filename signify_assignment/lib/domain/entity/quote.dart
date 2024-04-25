@@ -1,4 +1,4 @@
-class Quote {
+class Quote extends Object {
   Quote(
       this.id,
       this.content,

@@ -14,7 +14,7 @@ class QuotesCubit extends Cubit<QuotesState> {
 
   void fetchRandomQuotes() {
     try {
-      getQuotesUseCase.call()
+      getQuotesUseCase()
       .then((value) {
         value.isNotEmpty ? emit(QuotesLoadedState(value)) : emit(ErrorState("No Quote found"));
       });

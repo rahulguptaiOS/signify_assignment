@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../domain/entity/quote.dart';
 
 class QuotePage extends StatelessWidget {

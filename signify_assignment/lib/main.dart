@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:signify_assignment/data/source/quote_repository_impl.dart';
 import 'package:signify_assignment/di/service_locator.dart';
 import 'package:signify_assignment/presentation/widgets/quotes_slider.dart';
 
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => getIt<QuotesCubit>(),
-        child: QuoteSlider(),
+        child: const QuoteSlider(),
       )
     );
   }

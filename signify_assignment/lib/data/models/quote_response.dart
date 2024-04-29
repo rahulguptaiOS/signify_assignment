@@ -19,10 +19,10 @@ class QuoteResponse {
   });
 
   List<QuoteModel> getQuoteList(){
-    List<QuoteModel> list = [];
-    data.map((item) {
-      list.add(QuoteModel(null, null, null, null, 0, item.id, item.quoteText, item.quoteAuthor));
-    });
+    List<QuoteModel> list = data.map((item) {
+      return QuoteModel(null, null, null, null, 0, item.id, item.quoteText, item.quoteAuthor);
+    }).toList();
+
     return list;
   }
 

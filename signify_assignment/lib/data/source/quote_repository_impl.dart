@@ -34,19 +34,20 @@ class QuoteRepositoryImpl extends QuoteRepository {
       if(isOffline){
         return _localStorage.loadRandomQuotes();
       }
-      final responses = await Future.wait([_apiClient.getQuotes(), _apiService.getQuotes() ]);
-      if(responses[0] != null){
-        final List<QuoteModel> quotes =  List<QuoteModel>.from(responses[0] as List);
+
+      final response = await Future.any([_apiClient.getQuotes(), _apiService.getQuotes() ]);
+      if(response is List) {
+        final List<QuoteModel> quotes =  List<QuoteModel>.from(response);
         _localStorage.saveQuotes(list: quotes);
         return quotes;
       }
 
-      final QuoteResponse quotes =  responses[1] as QuoteResponse;
+      final QuoteResponse quotes =  response as QuoteResponse;
       final quoteList = quotes.getQuoteList();
+
       _localStorage.saveQuotes(list: quoteList);
       return quoteList;
     } catch (e) {
-      print(e);
       return _localStorage.loadRandomQuotes();
     }
   }

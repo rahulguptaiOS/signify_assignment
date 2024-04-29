@@ -10,13 +10,21 @@ import '../../domain/entity/quote.dart';
 import '../cubit/quotes_cubit.dart';
 import 'error_widget.dart';
 
-class QuoteSlider extends StatelessWidget {
+class QuoteSlider extends StatefulWidget {
+  const QuoteSlider({super.key});
+
+  @override
+  QuoteSliderState createState() => QuoteSliderState();
+
+}
+
+
+class QuoteSliderState extends State<QuoteSlider> {
   late Timer? _timer;
   final PageController _pageController = PageController();
   int _currentPage = 0;
   final List<Quote> _items = [];
   final List<Color> _colors = [];
-  QuoteSlider({super.key});
 
   void _startAutoScroll(BuildContext context) {
     _timer = Timer.periodic(const Duration(seconds: 10), (Timer timer) {
@@ -76,7 +84,7 @@ class QuoteSlider extends StatelessWidget {
                             IconButton(onPressed: () {
                               showDialog(context: context, builder: (alertContext) {
                                 return RateAlert(onRatingUpdate: (rate) => _rateQuote(_items[index], rate),
-                                    defaultRate: _items[index].rate ?? 1);
+                                    defaultRate: _items[index].rate);
                               });
                             },
                                 icon: const Icon(
@@ -98,5 +106,12 @@ class QuoteSlider extends StatelessWidget {
 
       }),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+    _timer = null;
   }
 }

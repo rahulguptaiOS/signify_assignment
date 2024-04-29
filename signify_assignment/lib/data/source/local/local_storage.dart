@@ -38,10 +38,7 @@ class LocalStorageImpl extends LocalStorage {
   @override
   saveQuotes({required List<QuoteModel> list}) async {
     var sharedPref = await SharedPreferences.getInstance();
-    var item = list.first;
-    if(item != null){
-      await sharedPref.setString(item.id, json.encode(item));
-    }
+    await sharedPref.setString(list.first.id, json.encode(list.first));
   }
   
 }

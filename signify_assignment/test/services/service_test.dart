@@ -5,10 +5,7 @@ import 'package:signify_assignment/data/models/quote_model.dart';
 import 'package:signify_assignment/data/models/quote_response.dart';
 import 'package:signify_assignment/data/source/network/api_client.dart';
 import 'package:signify_assignment/data/source/network/api_service.dart';
-
-import '../utility/file_handler.dart';
 import 'service_test.mocks.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 
 @GenerateMocks([ApiClient, ApiService])

@@ -14,7 +14,6 @@ class QuoteModel extends Quote {
       super.content,
       super.author);
 
-
   final List<String>? tags;
   final String? authorSlug;
   final String? dateAdded;

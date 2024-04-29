@@ -35,14 +35,14 @@ class RateAlert extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: () {
             // Handle rating submission
             Navigator.of(context).pop();
           },
-          child: Text('Submit'),
+          child: const Text('Submit'),
         ),
       ],
     );

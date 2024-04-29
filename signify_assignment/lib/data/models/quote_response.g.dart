@@ -18,27 +18,11 @@ QuoteResponse _$QuoteResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$QuoteResponseToJson(QuoteResponse instance) =>
-    <String, dynamic>{
-      'statusCode': instance.statusCode,
-      'message': instance.message,
-      'pagination': instance.pagination,
-      'totalQuotes': instance.totalQuotes,
-      'data': instance.data,
-    };
-
 Pagination _$PaginationFromJson(Map<String, dynamic> json) => Pagination(
       currentPage: json['currentPage'] as int,
       nextPage: json['nextPage'] as int,
       totalPages: json['totalPages'] as int,
     );
-
-Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
-    <String, dynamic>{
-      'currentPage': instance.currentPage,
-      'nextPage': instance.nextPage,
-      'totalPages': instance.totalPages,
-    };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       id: json['_id'] as String,
@@ -48,10 +32,3 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       v: json['__v'] as int,
     );
 
-Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      '_id': instance.id,
-      'quoteText': instance.quoteText,
-      'quoteAuthor': instance.quoteAuthor,
-      'quoteGenre': instance.quoteGenre,
-      '__v': instance.v,
-    };

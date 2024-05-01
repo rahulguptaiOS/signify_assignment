@@ -5,14 +5,8 @@ part 'quote_model.g.dart';
 
 @JsonSerializable()
 class QuoteModel extends Quote {
-  QuoteModel(this.tags,
-      this.authorSlug,
-      this.dateAdded,
-      this.dateModified,
-      this.length,
-      super.id,
-      super.content,
-      super.author);
+  QuoteModel(this.tags, this.authorSlug, this.dateAdded, this.dateModified,
+      this.length, super.id, super.content, super.author);
 
   final List<String>? tags;
   final String? authorSlug;
@@ -20,6 +14,7 @@ class QuoteModel extends Quote {
   final String? dateModified;
   final int? length;
 
-  factory QuoteModel.fromJson(Map<String, dynamic> json) => _$QuoteModelFromJson(json);
+  factory QuoteModel.fromJson(Map<String, dynamic> json) =>
+      _$QuoteModelFromJson(json);
   Map<String, dynamic> toJson() => _$QuoteModelToJson(this);
 }

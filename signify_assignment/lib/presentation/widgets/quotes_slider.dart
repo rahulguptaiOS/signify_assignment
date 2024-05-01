@@ -15,9 +15,7 @@ class QuoteSlider extends StatefulWidget {
 
   @override
   QuoteSliderState createState() => QuoteSliderState();
-
 }
-
 
 class QuoteSliderState extends State<QuoteSlider> {
   late Timer? _timer;
@@ -31,7 +29,6 @@ class QuoteSliderState extends State<QuoteSlider> {
       if (_currentPage < _items.length - 1) {
         _currentPage++;
       } else {
-
         BlocProvider.of<QuotesCubit>(context).fetchRandomQuotes();
       }
       _pageController.animateToPage(
@@ -51,18 +48,20 @@ class QuoteSliderState extends State<QuoteSlider> {
   Widget build(BuildContext context) {
     _startAutoScroll(context);
     return Scaffold(
-      body: BlocBuilder<QuotesCubit, QuotesState>(builder: (BuildContext context, state) {
-        if(state is QuotesLoadingState){
+      body: BlocBuilder<QuotesCubit, QuotesState>(
+          builder: (BuildContext context, state) {
+        if (state is QuotesLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is ErrorState) {
-          return  QuoteErrorWidget(message: state.message ?? "", color: Colors.red);
+          return QuoteErrorWidget(
+              message: state.message ?? "", color: Colors.red);
         } else if (state is QuotesLoadedState) {
           _items.addAll(state.quotes.nonNulls.toList());
           _colors.addAll(beautifulColors);
-            return Center(
-              child: PageView.builder(
+          return Center(
+            child: PageView.builder(
                 itemCount: _items.length,
                 controller: _pageController,
                 itemBuilder: (context, index) {
@@ -74,36 +73,36 @@ class QuoteSliderState extends State<QuoteSlider> {
                         bottom: 10,
                         child: Row(
                           children: [
-                            IconButton(onPressed: () {
-                                  BlocProvider.of<QuotesCubit>(context).shareQuote(_items[index]);
+                            IconButton(
+                                onPressed: () {
+                                  BlocProvider.of<QuotesCubit>(context)
+                                      .shareQuote(_items[index]);
                                 },
-                                icon: const Icon(
-                                  Icons.share,
-                                  color: Colors.white
-                                )),
-                            IconButton(onPressed: () {
-                              showDialog(context: context, builder: (alertContext) {
-                                return RateAlert(onRatingUpdate: (rate) => _rateQuote(_items[index], rate),
-                                    defaultRate: _items[index].rate);
-                              });
-                            },
-                                icon: const Icon(
-                                    Icons.star_rate,
-                                    color: Colors.white
-                                )),
+                                icon: const Icon(Icons.share,
+                                    color: Colors.white)),
+                            IconButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (alertContext) {
+                                        return RateAlert(
+                                            onRatingUpdate: (rate) =>
+                                                _rateQuote(_items[index], rate),
+                                            defaultRate: _items[index].rate);
+                                      });
+                                },
+                                icon: const Icon(Icons.star_rate,
+                                    color: Colors.white)),
                           ],
                         ),
                       )
-
                     ],
                   );
-                }
-              ),
-            );
+                }),
+          );
         } else {
           return Container();
         }
-
       }),
     );
   }

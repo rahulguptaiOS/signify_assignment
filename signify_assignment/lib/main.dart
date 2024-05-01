@@ -8,7 +8,6 @@ import 'presentation/cubit/quotes_cubit.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator().then((value) => runApp(const MyApp()));
-
 }
 
 class MyApp extends StatelessWidget {
@@ -18,14 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: BlocProvider(
-        create: (context) => getIt<QuotesCubit>(),
-        child: const QuoteSlider(),
-      )
-    );
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: BlocProvider(
+          create: (context) => getIt<QuotesCubit>(),
+          child: const QuoteSlider(),
+        ));
   }
 }

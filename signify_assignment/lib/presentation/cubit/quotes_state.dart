@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:signify_assignment/domain/entity/quote.dart';
 
 abstract class QuotesState extends Equatable {}
+
 class QuotesLoadingState extends QuotesState {
   @override
   List<Object?> get props => [];
@@ -22,8 +23,9 @@ class QuotesLoadedState extends QuotesState {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is QuotesLoadedState && runtimeType == other.runtimeType && quotes == other.quotes;
-
+      other is QuotesLoadedState &&
+          runtimeType == other.runtimeType &&
+          quotes == other.quotes;
 
   @override
   int get hashCode => quotes.hashCode;

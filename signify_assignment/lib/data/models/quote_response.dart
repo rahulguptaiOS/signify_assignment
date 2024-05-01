@@ -18,15 +18,17 @@ class QuoteResponse {
     required this.data,
   });
 
-  List<QuoteModel> getQuoteList(){
+  List<QuoteModel> getQuoteList() {
     List<QuoteModel> list = data.map((item) {
-      return QuoteModel(null, null, null, null, 0, item.id, item.quoteText, item.quoteAuthor);
+      return QuoteModel(
+          null, null, null, null, 0, item.id, item.quoteText, item.quoteAuthor);
     }).toList();
 
     return list;
   }
 
-  factory QuoteResponse.fromJson(Map<String, dynamic> json) => _$QuoteResponseFromJson(json);
+  factory QuoteResponse.fromJson(Map<String, dynamic> json) =>
+      _$QuoteResponseFromJson(json);
 }
 
 @JsonSerializable()
@@ -41,7 +43,8 @@ class Pagination {
     required this.totalPages,
   });
 
-  factory Pagination.fromJson(Map<String, dynamic> json) => _$PaginationFromJson(json);
+  factory Pagination.fromJson(Map<String, dynamic> json) =>
+      _$PaginationFromJson(json);
 }
 
 @JsonSerializable()

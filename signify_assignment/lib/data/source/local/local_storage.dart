@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:signify_assignment/data/models/quote_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,11 +8,10 @@ abstract class LocalStorage {
     required List<QuoteModel> list,
   });
 
-  Future<List<QuoteModel>> loadRandomQuotes() ;
+  Future<List<QuoteModel>> loadRandomQuotes();
 }
 
 class LocalStorageImpl extends LocalStorage {
-
   @override
   Future<List<QuoteModel>> loadRandomQuotes() async {
     var sharedPref = await SharedPreferences.getInstance();
@@ -22,14 +20,11 @@ class LocalStorageImpl extends LocalStorage {
     List<QuoteModel> list = [];
     if (keys.isNotEmpty) {
       final random = Random();
-      while(list.length < 5){
+      while (list.length < 5) {
         final randomKey = keys[random.nextInt(keys.length)];
-        var quote = sharedPref.getString(randomKey);
-        if(quote != null) {
-          list.add(QuoteModel.fromJson(json.decode(quote)));
-        }
+        final String? quote = sharedPref.getString(randomKey);
+        list.add(QuoteModel.fromJson(json.decode(quote ?? "")));
       }
-
     }
 
     return list;
@@ -38,7 +33,8 @@ class LocalStorageImpl extends LocalStorage {
   @override
   saveQuotes({required List<QuoteModel> list}) async {
     var sharedPref = await SharedPreferences.getInstance();
-    await sharedPref.setString(list.first.id, json.encode(list.first));
+    for (QuoteModel item in list) {
+      await sharedPref.setString(item.id, json.encode(item));
+    }
   }
-  
 }

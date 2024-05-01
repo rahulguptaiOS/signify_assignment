@@ -28,25 +28,28 @@ class QuoteRepositoryImpl extends QuoteRepository {
 
   @override
   Future<List<Quote>> getQuote() async {
-
     try {
       var isOffline = await _isDeviceOffline();
-      if(isOffline){
+      if (isOffline) {
         return _localStorage.loadRandomQuotes();
       }
 
-      final response = await Future.any([_apiClient.getQuotes(), _apiService.getQuotes() ]);
-      if(response is List) {
-        final List<QuoteModel> quotes =  List<QuoteModel>.from(response);
+      final response =
+          await Future.any([_apiClient.getQuotes(), _apiService.getQuotes()]);
+      if (response is List) {
+        final List<QuoteModel> quotes = List<QuoteModel>.from(response);
         _localStorage.saveQuotes(list: quotes);
         return quotes;
       }
 
-      final QuoteResponse quotes =  response as QuoteResponse;
-      final quoteList = quotes.getQuoteList();
+      if (response is QuoteResponse) {
+        final QuoteResponse quotes = response;
+        final quoteList = quotes.getQuoteList();
+        _localStorage.saveQuotes(list: quoteList);
+        return quoteList;
+      }
 
-      _localStorage.saveQuotes(list: quoteList);
-      return quoteList;
+      return [];
     } catch (e) {
       return _localStorage.loadRandomQuotes();
     }

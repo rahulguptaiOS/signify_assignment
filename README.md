@@ -1,4 +1,87 @@
-# How to Run a Flutter App on Different Platforms
+A Flutter app that fetches quotes from multiple APIs, handles offline scenarios, allows quote rating, social media sharing, and displays a slideshow. Supports Web, iOS and Android platforms.
+
+## Features
+
+* **Concurrent Quote Fetching:** Races against multiple APIs (e.g., [https://api.quotable.io/random](https://api.quotable.io/random), [https://pprathameshmore.github.io/QuoteGarden/](https://pprathameshmore.github.io/QuoteGarden/)) to display the fastest response.
+* **Offline Graceful Handling:** Falls back on a set of local (cached) quotes when offline.
+* **Interactive Rating:** Users can rate quotes.
+* **Social Sharing:** Native share functionality to share quotes on platforms.
+* **Quote Slideshow:** Displays a dynamic slideshow of random quotes.
+* **Multi-platform Support:** Runs on Web, iOS and Android environments.
+
+## Getting Started
+
+### Prerequisites
+
+* Flutter development environment set up (follow instructions at [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)): [https://flutter.dev/get-started](https://flutter.dev/get-started)
+* Basic understanding of Flutter widgets, state management, and asynchronous programming.
+
+## Local Quotes
+
+The app supports storing a set of quotes locally for offline scenarios by using shared_preferences.
+
+## Sharing Functionality
+
+For native social media sharing, we used share package.
+
+# Architecture
+
+This project utilizes Clean Architecture to achieve separation of concerns, testability, and maintainability. The application is divided into three core layers:
+
+### Presentation Layer: 
+Contains UI widgets responsible for displaying data and handling user interactions.
+### Domain Layer: 
+Encapsulates core business logic and data models (entities) independent of external frameworks or databases.
+### Data Layer: 
+Handles data persistence and retrieval through repositories and abstract interfaces. This layer interacts with concrete data sources like APIs or local storage.
+### Dependency Injection:
+The project employs dependency injection to manage dependencies between layers. This allows for easier testing, mocking, and decoupling of components.
+
+## Benefits of Clean Architecture
+
+### Improved Testability: 
+Each layer can be tested independently, leading to robust and maintainable code.
+### Separation of Concerns:
+Clear division of responsibilities ensures well-structured and focused code.
+### Platform Independence:
+The domain layer remains agnostic to UI frameworks or data storage mechanisms, facilitating easier porting to other platforms.
+
+# Dependencies
+
+The project utilizes the following dependencies:
+
+### Static Code Analysis: 
+  flutter_lints: ^3.0.0
+### JSON Serialization: 
+  json_serializable: ^6.7.1
+### Build Runner: 
+  build_runner: ^2.4.9 (likely for code generation)
+### API Calls (Retrofit):
+  retrofit_generator: ^8.1.0 (for code generation)
+  retrofit: ^4.1.0 (for making API requests)
+### Dependency Injection: 
+  get_it: ^7.7.0
+### State Management (Bloc): 
+  flutter_bloc: ^8.1.5 (likely for managing application state)
+### Data Model Equality: 
+  equatable: ^2.0.5 (for simplifying data model comparison)
+### Social Media Sharing: 
+  share: ^2.0.4
+### Quote Rating: 
+  flutter_rating_bar: ^4.0.1
+### Connectivity Check: 
+  connectivity: ^3.0.6 (for checking internet connectivity)
+### Mocking (Tests): 
+  mockito: ^5.4.4 (for creating test doubles in unit tests)
+### JSON Annotations: 
+  json_annotation: ^4.9.0 (likely for generating JSON serialization/deserialization code)
+### Local Storage:
+  shared_preferences: ^2.2.3 (for storing data locally)
+### Alternative Networking (Dio): 
+  dio: ^5.4.3+1 (potential alternative for making API requests)
+
+
+### How to Run a Flutter App on Different Platforms
 
 ## Android
 1. Make sure you have Android Studio installed on your machine.

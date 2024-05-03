@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:signify_assignment/di/service_locator.dart';
 import 'package:signify_assignment/presentation/widgets/quotes_slider.dart';
-
 import 'presentation/cubit/quotes_cubit.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator().then((value) => runApp(const MyApp()));
+  await setupLocator();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override
